@@ -1,0 +1,59 @@
+.admin .edit-profile__logos img {
+  width: 120px;
+}
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 99999;
+  background: transparent;
+  top: 0;
+  left: 0;
+  max-height: 100vh;
+  visibility: visible;
+  opacity: 1;
+}
+
+.error {
+  color: #ff0f0f !important;
+  font-size: 14px;
+  margin-top: 8px;
+  white-space: pre-line;
+}
+.checkbox-text {
+  user-select: none;
+}
+.navbar-right__menu .nav-item-toggle span,
+.navbar-right__menu .nav-item-toggle svg {
+  width: auto;
+  height: auto;
+}
+.avatar.avatar-sm {
+  width: 32px !important;
+  height: 32px !important;
+}
+.navbar-right__menu .nav-author .nav-item__title {
+  margin-left: 0 !important;
+}
+@media (max-width: 767px) {
+  .navbar-right__menu > li .dropdown-custom {
+    padding: 0;
+  }
+}
+.dropdown-custom .dropdown-wrapper {
+  top: 60px;
+}
+.avatar-xl {
+  width: 80px;
+  height: 80px;
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+.avatar-letter {
+  // text-transform: uppercase;
+}
+.nav-author__signout {
+  cursor: pointer;
+  user-select: none;
+}
