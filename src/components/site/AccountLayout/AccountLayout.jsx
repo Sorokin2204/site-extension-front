@@ -76,15 +76,43 @@ const AccountLayout = ({ children, title }) => {
               </div>
             </div>
             <div class="col-xxl-9 col-lg-8 col-sm-7">
-              <div class="as-cover">
-                <div class="as-cover__imgWrapper">
-                  <input id="file-upload1" type="file" name="fileUpload" class="d-none" />
-                  <label for="file-upload1">
-                    <img src="/img/cover-img.png" alt="image" class="w-100" />
-                  </label>
+              {/* <div class="card banner-feature--18 new d-flex bg-white">
+                <div class="row " style={{ flexWrap: 'nowrap' }}>
+                  <div class="col-8">
+                    <div class=" ">
+                      <h4 class="banner-feature__heading color-dark">Настройки</h4>
+                      <p class="banner-feature__para color-dark fs-13">
+                        There are many variations of passages of Lorem Ipsum available,
+                        <br />
+                        ut the majority have suffered passages of Lorem Ipsum available alteration in some form
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="banner-feature__shape">
+                      <img src="/img/banner.png" alt="img" />
+                    </div>
+                  </div>
+                </div>
+              </div> */}
+              <div
+                className="d-flex card  "
+                style={{
+                  height: '203px',
+                  backgroundImage: 'url(/img/banner-2.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: '70% 0',
+                  padding: '24px 0 0 25px',
+                }}>
+                <div className="row">
+                  {' '}
+                  <div className="col-8 col-md-7">
+                    {' '}
+                    <h2 class="banner-feature__heading color-white">Ваш профиль</h2> <p class=" color-white fs-16 mt-10">Здесь вы можете обновить свои личные данные, свой пароль или необходимые настройки</p>
+                  </div>
+                  <div className="col-4 col-md-5">{/* <img src="/img/banner.png" class="w-100" alt="img" /> */}</div>
                 </div>
               </div>
-
               <div class="mb-50">
                 <div class="tab-content" id="v-pills-tabContent">
                   <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">

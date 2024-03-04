@@ -14,11 +14,7 @@ export const userProfile = createAsyncThunk('user/userProfile', async (data, { r
         Authorization: `Bearer ${token}`,
         Accept: '*/*',
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Referrer-Policy': 'same-origin',
         Connection: 'keep-alive',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
       },
     })
     .then((res) => {

@@ -1,114 +1,66 @@
 import React from 'react';
 import styles from './OverviewPage.module.scss';
 import TotalLineChart from '../../../components/site/TotalSales/TotalSales';
+import { useSelector } from 'react-redux';
+import OverviewItem from '../../../components/site/OverviewItem/OverviewItem';
+import { Helmet } from 'react-helmet';
 const OverviewPage = () => {
+  const {
+    userProfile: { data: userProfile },
+  } = useSelector((state) => state.user);
   return (
     <>
       {' '}
+      <Helmet>
+        <title>Главная</title>
+      </Helmet>
       <div class="crm demo6 mb-25">
         <div class="container-fluid">
           <div class="row ">
             <div class="col-lg-12">
               <div class="breadcrumb-main">
-                <h4 class="text-capitalize breadcrumb-title">Overview</h4>
+                <h4 class="text-capitalize breadcrumb-title">Главная</h4>
               </div>
             </div>
-            <div class="col-xxl-3 col-sm-6 mb-25">
-              <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
-                <div class="overview-content w-100">
-                  <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
-                    <div class="ap-po-details__titlebar">
-                      <h1>100+</h1>
-                      <p>Total Products</p>
-                    </div>
-                    <div class="ap-po-details__icon-area">
-                      <div class="svg-icon order-bg-opacity-primary color-primary">
-                        <i class="uil uil-briefcase-alt"></i>
+            <div class="col-xxl-12 mb-25">
+              <div class="card banner-feature--18 new d-flex bg-white">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-xl-6">
+                      <div class="card-body px-25">
+                        <h1 class="banner-feature__heading color-dark">Добро пожаловать на главную страницу</h1>
+                        <p class="banner-feature__para color-dark">Изучайте подробную статистику и анализируйте динамику вашего тарифа с помощью наглядных графиков и диаграмм. Отслеживайте свои достижения и оптимизируйте свои расходы, используя все возможности личного кабинета.</p>
+                        <div class="d-flex justify-content-sm-start justify-content-center"></div>
                       </div>
                     </div>
-                  </div>
-                  <div class="ap-po-details-time">
-                    <span class="color-success">
-                      <i class="las la-arrow-up"></i>
-                      <strong>25.36%</strong>
-                    </span>
-                    <small>Since last month</small>
+                    <div class="col-xl-6">
+                      <div class="banner-feature__shape">
+                        <img src="/img/banner.png" alt="img" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-xxl-3 col-sm-6 mb-25">
-              <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
-                <div class="overview-content w-100">
-                  <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
-                    <div class="ap-po-details__titlebar">
-                      <h1>30,825</h1>
-                      <p>Total Orders</p>
-                    </div>
-                    <div class="ap-po-details__icon-area">
-                      <div class="svg-icon order-bg-opacity-info color-info">
-                        <i class="uil uil-shopping-cart-alt"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="ap-po-details-time">
-                    <span class="color-success">
-                      <i class="las la-arrow-up"></i>
-                      <strong>25.36%</strong>
-                    </span>
-                    <small>Since last month</small>
+            {userProfile?.tariff_info ? (
+              userProfile?.tariff_info?.details?.map((item) => <OverviewItem value={item?.value} label={item?.display_text} color={item?.color} icon={item?.icon} />)
+            ) : (
+              <div class="card banner-feature banner-feature--2" style={{ background: 'var(--color-primary)' }}>
+                <div class="banner-feature__shape">
+                  <img src="img/svg/group9010.svg" alt="img" />
+                </div>
+                <div class="d-flex justify-content-center">
+                  <div class="card-body">
+                    <h1 class="banner-feature__heading color-white">Выберите тариф</h1>
+                    <p class="banner-feature__para color-white">Чтобы пользоватся платформой, выберите подходящий вам тариф</p>
+                    <button class="banner-feature__btn btn color-primary btn-md px-20 bg-white radius-xs fs-15" type="button">
+                      Выбрать
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6 mb-25">
-              <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
-                <div class="overview-content w-100">
-                  <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
-                    <div class="ap-po-details__titlebar">
-                      <h1>$30,825</h1>
-                      <p>Total Sales</p>
-                    </div>
-                    <div class="ap-po-details__icon-area">
-                      <div class="svg-icon order-bg-opacity-secondary color-secondary">
-                        <i class="uil uil-usd-circle"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="ap-po-details-time">
-                    <span class="color-danger">
-                      <i class="las la-arrow-down"></i>
-                      <strong>25.36%</strong>
-                    </span>
-                    <small>Since last month</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6 mb-25">
-              <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
-                <div class="overview-content w-100">
-                  <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
-                    <div class="ap-po-details__titlebar">
-                      <h1>30,825</h1>
-                      <p>New Customers</p>
-                    </div>
-                    <div class="ap-po-details__icon-area">
-                      <div class="svg-icon order-bg-opacity-warning color-warning">
-                        <i class="uil uil-users-alt"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="ap-po-details-time">
-                    <span class="color-success">
-                      <i class="las la-arrow-up"></i>
-                      <strong>25.36%</strong>
-                    </span>
-                    <small>Since last month</small>
-                  </div>
-                </div>
-              </div>
-            </div>{' '}
+            )}
+
             <TotalLineChart />
           </div>
         </div>

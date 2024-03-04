@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { resetUserAuth, resetUserProfile } from '../../../redux/slices/user.slice';
 const menuData = [
   {
-    label: 'Overview',
+    label: 'Главная',
     icon: 'uil-chart',
     link: '/overview',
   },
@@ -70,10 +70,10 @@ const HomeLayout = ({ children }) => {
         <nav class="navbar navbar-light">
           <div class="navbar-left">
             <div class="logo-area">
-              <a class="navbar-brand" href="index.html">
-                <img class="dark" src="/img/logo-dark.png" alt="logo" />
-                <img class="light" src="/img/logo-white.png" alt="logo" />
-              </a>
+              <Link class="navbar-brand" to="/">
+                <img class="dark" src="/img/logo.svg" alt="logo" />
+                <img class="light" src="/img/logo.svg" alt="logo" />
+              </Link>
               <a
                 href="#"
                 class="sidebar-toggle"

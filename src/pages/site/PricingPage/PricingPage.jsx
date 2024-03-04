@@ -3,6 +3,7 @@ import styles from './PricingPage.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { tariffGetList } from '../../../redux/actions/tariff/tariffGetList';
 import Tariff from '../../../components/site/Tariff/Tariff';
+import { Helmet } from 'react-helmet';
 const PricingPage = () => {
   const dispatch = useDispatch();
   const {
@@ -14,17 +15,27 @@ const PricingPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Тарифы</title>
+      </Helmet>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="breadcrumb-main">
-              <h4 class="text-capitalize breadcrumb-title">Тарифы</h4>
+          <div class="col-lg-12 mb-30 mt-30">
+            <div class="card banner-feature banner-feature--5" style={{ background: '#00a5e0', minHeight: '180px' }}>
+              <div class="banner-feature__shape">
+                <img src="/img/svg/group3320.svg" alt="img" />
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="card-body" style={{ paddingTop: '20px' }}>
+                  <h1 class="banner-feature__heading color-white">Тарифы</h1>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="row">
           {tariffList?.map((item, index) => (
-            <Tariff {...item} color={index == 0 ? 'primary' : 'secondary'} />
+            <Tariff {...item} color={item?.color ?? 'primary'} />
           ))}
         </div>
       </div>

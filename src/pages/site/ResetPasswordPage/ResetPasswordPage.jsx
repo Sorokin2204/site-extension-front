@@ -13,6 +13,7 @@ import { userAuth } from '../../../redux/actions/user/userAuth';
 import { userProfileUpdate } from '../../../redux/actions/user/userProfileUpdate';
 import { userProfile } from '../../../redux/actions/user/userProfile';
 import { userUpdatePassword } from '../../../redux/actions/user/userUpdatePassword';
+import { Helmet } from 'react-helmet';
 const ResetPasswordPage = () => {
   const defaultValues = {
     old_password: '',
@@ -47,7 +48,9 @@ const ResetPasswordPage = () => {
   }, [userUpdateError]);
   return (
     <>
-      {' '}
+      <Helmet>
+        <title>Смена пароля</title>
+      </Helmet>{' '}
       <div class="row justify-content-center">
         <div class="col-xxl-6">
           <div class="edit-profile__body mx-xl-20">

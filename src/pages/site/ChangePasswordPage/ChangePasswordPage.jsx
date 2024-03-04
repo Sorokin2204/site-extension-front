@@ -8,6 +8,7 @@ import { resetUserResetPassword } from '../../../redux/slices/user.slice';
 import Input from '../../../components/site/Input/Input';
 import Button from '../../../components/site/Button/Button';
 import Loading from '../../../components/site/Loading/Loading';
+import { Helmet } from 'react-helmet';
 const ChangePasswordPage = () => {
   const defaultValues = {};
   const form = useForm({ defaultValues });
@@ -42,7 +43,9 @@ const ChangePasswordPage = () => {
   }, [userResetPasswordError]);
   return (
     <>
-      {' '}
+      <Helmet>
+        <title>Восстановления пароля</title>
+      </Helmet>
       <div class="card border-0">
         <div class="card-header">
           <div class="edit-profile__title">
@@ -51,7 +54,7 @@ const ChangePasswordPage = () => {
         </div>
         <div class="card-body">
           <div class="edit-profile__body">
-            <p>Enter the email address you used when you joined and we’ll send you instructions to reset your password.</p>
+            <p>Введите ваш адрес почты. На указаный адрес придет инструкция по Восстановлению пароля</p>
             <Input form={form} name={'email'} label={'Email'} classWrap={'mb-20'} />
             <div class="d-flex">
               <Button className="btn-squared text-capitalize lh-normal px-md-50 py-15 signIn-createBtn" onClick={form.handleSubmit(onSubmit)}>
@@ -61,9 +64,9 @@ const ChangePasswordPage = () => {
           </div>
           <div class="button-group d-flex align-items-center justify-content-start mt-25 pb-30">
             <p class="mb-0">
-              Return to&nbsp;
+              Вернутся&nbsp;
               <Link to="/login" class="color-primary">
-                Sign in
+                назад
               </Link>
             </p>
           </div>

@@ -7,6 +7,7 @@ import Button from '../../../components/site/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSignUp } from '../../../redux/actions/user/userSignUp';
 import Loading from '../../../components/site/Loading/Loading';
+import { Helmet } from 'react-helmet';
 const RegistrationPage = () => {
   const registrationForm = useForm();
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ const RegistrationPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Регистрация</title>
+      </Helmet>
       <div class="card border-0">
         <div class="card-header">
           <div class="edit-profile__title">
@@ -46,7 +50,6 @@ const RegistrationPage = () => {
         <div class="card-body">
           <div class="edit-profile__body">
             <div class="edit-profile__body">
-              <Input form={registrationForm} name={'username'} type={'text'} label={'Имя'} classWrap={'mb-25'} />
               <Input
                 form={registrationForm}
                 name={'email'}
@@ -91,7 +94,7 @@ const RegistrationPage = () => {
                 }}
               />
 
-              <div class="admin-condition">
+              {/* <div class="admin-condition">
                 <div class="checkbox-theme-default custom-checkbox ">
                   <input class="checkbox" type="checkbox" id="admin-1" />
                   <label for="admin-1">
@@ -108,10 +111,10 @@ const RegistrationPage = () => {
                     </span>
                   </label>
                 </div>
-              </div>
+              </div> */}
               <div class="admin__button-group button-group d-flex pt-1 justify-content-md-start justify-content-center">
                 <Button className="text-capitalize lh-normal px-50 signIn-createBtn " onClick={registrationForm.handleSubmit(onSubmit)}>
-                  Create Account
+                  Зарегистрироваться
                 </Button>
               </div>
               {signUpError?.non_field_errors?.[0] && <p className="error pt-1 d-flex justify-content-center">{signUpError?.non_field_errors?.[0]}</p>}
@@ -119,9 +122,9 @@ const RegistrationPage = () => {
           </div>
         </div>
         <p class="mb-30 d-flex align-items-center justify-content-center">
-          Don't have an account?&nbsp;
+          Уже есть аккаунт?&nbsp;
           <Link to="/login" class="color-primary">
-            Sign In
+            Войти
           </Link>
         </p>
         {signUpLoading && <Loading />}

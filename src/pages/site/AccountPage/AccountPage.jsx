@@ -11,14 +11,17 @@ import Loading from '../../../components/site/Loading/Loading';
 import { userUpdate } from '../../../redux/actions/user/userUpdate';
 import { resetUserUpdate } from '../../../redux/slices/user.slice';
 import { userAuth } from '../../../redux/actions/user/userAuth';
+import { Helmet } from 'react-helmet';
 const AccountPage = () => {
   const defaultValues = {
     email: '',
     fio: '',
   };
+
   const form = useForm({ defaultValues });
   const {
     userAuth: { data: userData },
+    userProfile: { data: userProfile },
     userUpdate: { data: userUpdateData, loading: userUpdateLoading, error: userUpdateError },
   } = useSelector((state) => state.user);
   useEffect(() => {
@@ -48,6 +51,10 @@ const AccountPage = () => {
 
   return (
     <>
+      {' '}
+      <Helmet>
+        <title>Профиль</title>
+      </Helmet>
       <div class="row justify-content-center">
         <div class="col-xxl-6">
           <div class="edit-profile__body mx-xl-20">
@@ -56,9 +63,16 @@ const AccountPage = () => {
             <Input disabled form={form} name={'email'} label={'Почта'} classWrap={'mb-20'} />{' '}
             <div class="d-flex justify-content-between mt-1 align-items-center flex-wrap">
               <div class="text-capitalize py-10">
-                <h6>Тариф «Стандарт»</h6>
+                {userProfile?.tariff_info ? (
+                  <h6>Тариф «{userProfile?.tariff_info?.name}»</h6>
+                ) : (
+                  <h6 class="text-danger" style={{ textTransform: 'none' }}>
+                    Тариф не указан <i class="uil uil-exclamation-circle"></i>
+                  </h6>
+                )}
+
                 <span class="fs-13 color-light fw-400 " style={{ textTransform: 'none' }}>
-                  Чтобы поменять тариф нажмите на кнопку "Изменить"
+                  Чтобы просмотреть все тарифы нажмите на кнопку "Посмотреть"
                 </span>
               </div>
               <div class="my-sm-0 my-10 py-10">

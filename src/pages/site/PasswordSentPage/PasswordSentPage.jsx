@@ -2,11 +2,14 @@ import React from 'react';
 import styles from './PasswordSentPage.module.scss';
 import Button from '../../../components/site/Button/Button';
 import { useNavigate } from 'react-router';
+import { Helmet } from 'react-helmet';
 const PasswordSentPage = () => {
   const navigate = useNavigate();
   return (
     <>
-      {' '}
+      <Helmet>
+        <title>Пароль сброшен</title>
+      </Helmet>
       <div class="card  bg-normal p-sm-30 p-15">
         <div class="card-body bg-white bg-shadow radius-xl px-sm-30 pt-sm-25 m-0 p-0">
           <div class="payment-status__area  py-sm-25 py-20 text-center">
