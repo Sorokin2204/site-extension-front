@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from './Tariff.module.scss';
 import { currencyFormat } from '../../../utils/currencyFormat';
-const Tariff = ({ color = 'primary', price, name, details }) => {
+import Loading from '../Loading/Loading';
+import { useDispatch } from 'react-redux';
+import { tariffPayment } from '../../../redux/actions/tariff/tariffPayment';
+const Tariff = ({ id, color = 'primary', price, name, details }) => {
+  const dispatch = useDispatch();
   return (
     <>
       {' '}
@@ -24,14 +28,27 @@ const Tariff = ({ color = 'primary', price, name, details }) => {
                 {details?.map((item) => (
                   <li>
                     <span class="fa fa-check"></span>
-                    {item?.value} {item?.display_text}
+                    {item?.value_based_permission ? (
+                      <>
+                        {' '}
+                        {item?.value} {item?.display_text}
+                      </>
+                    ) : (
+                      <>{item?.display_text}</>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
           <div class="price_action d-flex pb-30 ps-30">
-            <button class={`btn btn-${color?.toLowerCase()} btn-default btn-squared text-capitalize px-30`}>Перейти</button>
+            <button
+              class={`btn btn-${color?.toLowerCase()} btn-default btn-squared text-capitalize px-30`}
+              onClick={() => {
+                dispatch(tariffPayment(id));
+              }}>
+              Перейти
+            </button>
           </div>
         </div>
       </div>

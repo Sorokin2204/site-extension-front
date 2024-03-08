@@ -12,6 +12,8 @@ import { userUpdate } from '../../../redux/actions/user/userUpdate';
 import { resetUserUpdate } from '../../../redux/slices/user.slice';
 import { userAuth } from '../../../redux/actions/user/userAuth';
 import { Helmet } from 'react-helmet';
+import TelegramLoginButton from 'telegram-login-button';
+import { userTelegram } from '../../../redux/actions/user/userTelegram';
 const AccountPage = () => {
   const defaultValues = {
     email: '',
@@ -22,6 +24,7 @@ const AccountPage = () => {
   const {
     userAuth: { data: userData },
     userProfile: { data: userProfile },
+    userTelegram: { data: userTelegramData },
     userUpdate: { data: userUpdateData, loading: userUpdateLoading, error: userUpdateError },
   } = useSelector((state) => state.user);
   useEffect(() => {
@@ -48,6 +51,11 @@ const AccountPage = () => {
       dispatch(userAuth());
     }
   }, [userUpdateData]);
+  useEffect(() => {
+    if (userTelegramData) {
+      toast.success('Телеграм привязан');
+    }
+  }, [userTelegramData]);
 
   return (
     <>
@@ -90,6 +98,8 @@ const AccountPage = () => {
               </Button>
             </div>
           </div>
+          <h6 class="mb-15"> Привязка телеграма</h6>
+          <TelegramLoginButton botName="sellstat_bot" dataOnauth={(user) => dispatch(userTelegram(user))} className="telegram-btn" />
         </div>
         {userUpdateLoading && <Loading />}
       </div>

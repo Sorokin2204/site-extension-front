@@ -4,14 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { tariffGetList } from '../../../redux/actions/tariff/tariffGetList';
 import Tariff from '../../../components/site/Tariff/Tariff';
 import { Helmet } from 'react-helmet';
+import Loading from '../../../components/site/Loading/Loading';
 const PricingPage = () => {
   const dispatch = useDispatch();
   const {
     tariffGetList: { data: tariffList },
+    tariffPayment: { data: tariffPaymentData, loading: tariffPaymentLoading },
   } = useSelector((state) => state.tariff);
   useEffect(() => {
     dispatch(tariffGetList());
   }, []);
+  useEffect(() => {
+    if (tariffPaymentData) {
+      window.location.href = tariffPaymentData?.payment_link;
+    }
+  }, [tariffPaymentData]);
 
   return (
     <>
@@ -38,6 +45,7 @@ const PricingPage = () => {
             <Tariff {...item} color={item?.color ?? 'primary'} />
           ))}
         </div>
+        {tariffPaymentLoading && <Loading />}
       </div>
     </>
   );

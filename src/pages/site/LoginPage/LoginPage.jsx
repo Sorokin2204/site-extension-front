@@ -9,6 +9,7 @@ import { userSignIn } from '../../../redux/actions/user/userSignIn';
 import Button from '../../../components/site/Button/Button';
 import { resetUserSignIn } from '../../../redux/slices/user.slice';
 import { Helmet } from 'react-helmet';
+import TelegramLoginButton from 'telegram-login-button';
 const LoginPage = () => {
   const defaultValues = { email: '', password: '' };
   const loginForm = useForm({ defaultValues });

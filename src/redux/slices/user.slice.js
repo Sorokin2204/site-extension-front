@@ -7,6 +7,9 @@ import { initStateUserResetPassword, reducerUserResetPassword } from '../actions
 import { initStateUserProfile, reducerUserProfile } from '../actions/user/userProfile';
 import { initStateUserProfileUpdate, reducerUserProfileUpdate } from '../actions/user/userProfileUpdate';
 import { initStateUserUpdatePassword, reducerUserUpdatePassword } from '../actions/user/userUpdatePassword';
+import { initStateUserStatistics, reducerUserStatistics } from '../actions/user/userStatistics';
+import { initStateUserStatisticMonth, reducerUserStatisticMonth } from '../actions/user/userStatisticMonth';
+import { initStateUserTelegram, reducerUserTelegram } from '../actions/user/userTelegram';
 export const initialState = {
   ...initStateUserSignUp,
   ...initStateUserSignIn,
@@ -16,6 +19,9 @@ export const initialState = {
   ...initStateUserProfile,
   ...initStateUserProfileUpdate,
   ...initStateUserUpdatePassword,
+  ...initStateUserStatistics,
+  ...initStateUserStatisticMonth,
+  ...initStateUserTelegram,
 };
 
 export const userSlice = createSlice({
@@ -46,6 +52,9 @@ export const userSlice = createSlice({
     resetUserUpdatePassword(state, action) {
       state.userUpdatePassword = initStateUserUpdatePassword.userUpdatePassword;
     },
+    resetUserTelegram(state, action) {
+      state.userTelegram = initStateUserTelegram.userTelegram;
+    },
   },
   extraReducers: {
     ...reducerUserSignUp,
@@ -56,6 +65,9 @@ export const userSlice = createSlice({
     ...reducerUserProfile,
     ...reducerUserProfileUpdate,
     ...reducerUserUpdatePassword,
+    ...reducerUserStatistics,
+    ...reducerUserStatisticMonth,
+    ...reducerUserTelegram,
   },
 });
 export const { resetUserSignUp, resetUserSignIn, resetUserResetPassword, resetUserUpdate, resetUserProfileUpdate, resetUserUpdatePassword, resetUserAuth, resetUserProfile } = userSlice.actions;

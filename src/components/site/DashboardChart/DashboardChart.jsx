@@ -101,7 +101,7 @@ function DashboardChart({ type, height, width, scales, labels, id, datasets, too
                 y: 8,
               },
               z: 999999,
-              enabled: false,
+              enabled: true,
               // external: customTooltips,
               ...tooltip,
             },

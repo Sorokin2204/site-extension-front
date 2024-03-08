@@ -1,16 +1,110 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './OverviewPage.module.scss';
 import TotalLineChart from '../../../components/site/TotalSales/TotalSales';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import OverviewItem from '../../../components/site/OverviewItem/OverviewItem';
 import { Helmet } from 'react-helmet';
+import { userStatistics } from '../../../redux/actions/user/userStatistics';
+import { userStatisticMonth } from '../../../redux/actions/user/userStatisticMonth';
+import OverviewMonth from '../OverviewMonth/OverviewMonth';
+import OverviewPartnerDashboard from '../../../components/site/OverviewPartnerDashboard/OverviewPartnerDashboard';
+import { currencyFormat } from '../../../utils/currencyFormat';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 const OverviewPage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userStatistics());
+  }, []);
+
   const {
     userProfile: { data: userProfile },
+    userStatistics: { data: dataUserStatistics, loading: loadingUserStatistics },
   } = useSelector((state) => state.user);
   return (
     <>
-      {' '}
+      {userProfile?.partner && (
+        <>
+          {' '}
+          <div class="crm demo6 " style={{ marginBottom: '35px' }}>
+            <div class="container-fluid">
+              <div class="row ">
+                <div class="col-lg-12">
+                  <div class="breadcrumb-main justify-content-center mb-20">
+                    <h4 class=" breadcrumb-title text-center">Общая статистика</h4>
+                  </div>
+                </div>{' '}
+              </div>
+              <div className="row" style={{ rowGap: '24px' }}>
+                <div className="col-6 col-lg-3 col-md-4">
+                  <div class="overview-content products-awards pt-20 pb-20 text-center radius-xl" style={{ position: 'relative', overflow: 'hidden' }}>
+                    <div class="d-inline-flex flex-column align-items-center justify-content-center">
+                      <div class="d-flex align-items-start flex-wrap">
+                        <div>
+                          <p class="mb-1 mb-0 color-gray" style={{ marginTop: 0 }}>
+                            Количество оплат
+                          </p>
+                          <h1>{currencyFormat(dataUserStatistics?.referral_purchases)}</h1>
+                        </div>
+                      </div>
+                    </div>{' '}
+                    {(!dataUserStatistics || loadingUserStatistics) && <Skeleton count={1} style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />}
+                  </div>
+                </div>{' '}
+                <div className="col-6 col-lg-3 col-md-4">
+                  <div class="overview-content products-awards pt-20 pb-20 text-center radius-xl" style={{ position: 'relative', overflow: 'hidden' }}>
+                    <div class="d-inline-flex flex-column align-items-center justify-content-center">
+                      <div class="d-flex align-items-start flex-wrap">
+                        <div>
+                          <p class="mb-1 mb-0 color-gray" style={{ marginTop: 0 }}>
+                            Количество регистраций
+                          </p>
+                          <h1>{currencyFormat(dataUserStatistics?.referral_count)}</h1>
+                        </div>
+                      </div>
+                    </div>
+                    {(!dataUserStatistics || loadingUserStatistics) && <Skeleton count={1} style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />}
+                  </div>
+                </div>{' '}
+                <div className="col-6 col-lg-3 col-md-4">
+                  <div class="overview-content products-awards pt-20 pb-20 text-center radius-xl" style={{ position: 'relative', overflow: 'hidden' }}>
+                    <div class="d-inline-flex flex-column align-items-center justify-content-center">
+                      <div class="d-flex align-items-start flex-wrap">
+                        <div>
+                          <p class="mb-1 mb-0 color-gray" style={{ marginTop: 0 }}>
+                            Итоговая комиссия
+                          </p>
+                          <h1>{currencyFormat(dataUserStatistics?.total_earnings)}</h1>
+                        </div>
+                      </div>
+                    </div>
+                    {(!dataUserStatistics || loadingUserStatistics) && <Skeleton count={1} style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />}
+                  </div>
+                </div>{' '}
+                <div className="col-6 col-lg-3 col-md-4">
+                  <div class="overview-content products-awards pt-15 pb-15 text-center radius-xl" style={{ position: 'relative', overflow: 'hidden' }}>
+                    <div class="d-inline-flex flex-column align-items-center justify-content-center">
+                      <div class="d-flex align-items-start flex-wrap">
+                        <div>
+                          <p class="mb-1 mb-0 color-gray" style={{ marginTop: 0 }}>
+                            Условия
+                          </p>
+                          <h6>1-ая оплата — 30%</h6>
+                          <h6 style={{ marginTop: '2px' }}>после — 20%</h6>
+                        </div>
+                      </div>
+                    </div>
+                    {(!dataUserStatistics || loadingUserStatistics) && <Skeleton count={1} style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <OverviewMonth />
+          <OverviewPartnerDashboard />
+        </>
+      )}
+
       <Helmet>
         <title>Главная</title>
       </Helmet>
@@ -18,7 +112,7 @@ const OverviewPage = () => {
         <div class="container-fluid">
           <div class="row ">
             <div class="col-lg-12">
-              <div class="breadcrumb-main">
+              <div class="breadcrumb-main" style={{ marginTop: 0 }}>
                 <h4 class="text-capitalize breadcrumb-title">Главная</h4>
               </div>
             </div>
@@ -61,7 +155,7 @@ const OverviewPage = () => {
               </div>
             )}
 
-            <TotalLineChart />
+            {/* <TotalLineChart /> */}
           </div>
         </div>
       </div>

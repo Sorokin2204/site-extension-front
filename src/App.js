@@ -14,6 +14,8 @@ import AccountLayout from './components/site/AccountLayout/AccountLayout';
 import PricingPage from './pages/site/PricingPage/PricingPage';
 import ResetPasswordPage from './pages/site/ResetPasswordPage/ResetPasswordPage';
 import PasswordSentPage from './pages/site/PasswordSentPage/PasswordSentPage';
+import ErrorPage from './pages/site/ErrorPage/ErrorPage';
+import SuccessPage from './pages/site/SuccessPage/SuccessPage';
 
 function App() {
   let routes = useRoutes([
@@ -38,6 +40,22 @@ function App() {
       element: (
         <HomeLayout>
           <PricingPage />
+        </HomeLayout>
+      ),
+    },
+    {
+      path: '/success',
+      element: (
+        <HomeLayout>
+          <SuccessPage />
+        </HomeLayout>
+      ),
+    },
+    {
+      path: '/error',
+      element: (
+        <HomeLayout>
+          <ErrorPage />
         </HomeLayout>
       ),
     },

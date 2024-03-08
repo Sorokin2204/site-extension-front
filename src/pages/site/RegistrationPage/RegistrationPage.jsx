@@ -83,7 +83,7 @@ const RegistrationPage = () => {
                 name={'password2'}
                 type={'password'}
                 label={'Повторите пароль'}
-                classWrap={'mb-25'}
+                classWrap={'mb-10'}
                 rules={{
                   required: { message: 'Обязательное поле', value: true },
                   validate: (val) => {
@@ -93,7 +93,12 @@ const RegistrationPage = () => {
                   },
                 }}
               />
-
+              <div className="mb-25" style={{ fontSize: '12px' }}>
+                Нажимая кнопку "зарегистрироваться" вы соглашаетесь с{' '}
+                <a href="/privacy.pdf" target="_blank">
+                  политикой конфиденциальности
+                </a>
+              </div>
               {/* <div class="admin-condition">
                 <div class="checkbox-theme-default custom-checkbox ">
                   <input class="checkbox" type="checkbox" id="admin-1" />
@@ -113,7 +118,7 @@ const RegistrationPage = () => {
                 </div>
               </div> */}
               <div class="admin__button-group button-group d-flex pt-1 justify-content-md-start justify-content-center">
-                <Button className="text-capitalize lh-normal px-50 signIn-createBtn " onClick={registrationForm.handleSubmit(onSubmit)}>
+                <Button className="text-capitalize lh-normal px-50 signIn-createBtn " style={{ margin: '0 auto' }} onClick={registrationForm.handleSubmit(onSubmit)}>
                   Зарегистрироваться
                 </Button>
               </div>
